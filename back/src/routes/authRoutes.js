@@ -5,17 +5,22 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, pseudo } = req.body;
 
   try {
-    const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) {
+    const existingMailUser = await User.findOne({ where: { email } });
+    if (existingMailUser) {
       return res.status(400).json({ message: "L'email est déjà utilisé" });
+    }
+    const existingPseudoUser = await User.findOne({ where: { pseudo } });
+    if (existingPseudoUser) {
+      return res.status(400).json({ message: "Le pseudo est déjà utilisé" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
+      pseudo,
       email,
       password: hashedPassword,
     });
@@ -45,7 +50,7 @@ router.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ token: token });
+    res.status(200).json({ pseudo: user.pseudo, token: token });
   } catch (error) {
     res.status(500).json({ message: "Une erreur s'est produite", error });
   }

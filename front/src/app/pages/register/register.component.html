@@ -2,6 +2,15 @@
     <h2>Inscription</h2>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="f-col mb2">
+            <label for="pseudo">Pseudo:</label>
+            <input type="pseudo" id="pseudo" formControlName="pseudo" required />
+            @if(registerForm.get('pseudo')?.invalid && registerForm.get('pseudo')?.touched) {
+            <p class="text-error">Le pseudo doit contenir au moins 3
+                caractères.</p>
+            }
+        </div>
+
+        <div class="f-col mb2">
             <label for="email">Email:</label>
             <input id="email" formControlName="email" required />
             @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {

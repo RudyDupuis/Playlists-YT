@@ -1,0 +1,27 @@
+<div>
+    <form [formGroup]="searchForm" (ngSubmit)="search()" class="ptb2">
+        <input type="text" formControlName="query" placeholder="Rechercher une vidéo YouTube" class="mb2" />
+        <button type="submit">Rechercher</button>
+    </form>
+
+    @if(errorMessage !== undefined) {
+    <p class="text-error">{{ errorMessage }}</p>
+    }
+
+    @if(videos.length > 0) {
+    <ul>
+        @for(video of videos; track $index) {
+        <li>
+            <div class="f a-cent mb2">
+                <img [src]="video.snippet.thumbnails.default.url" alt="{{ video.snippet.title }}" />
+                <div class="ml2">
+                    <p class="mb1">{{ video.snippet.title }}</p>
+                    <button class="smallBtn"
+                        (click)="addVideoToPlaylist(video.id.videoId, video.snippet.title, video.snippet.thumbnails.default.url)">Ajouter</button>
+                </div>
+            </div>
+        </li>
+        }
+    </ul>
+    }
+</div>

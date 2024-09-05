@@ -15,24 +15,30 @@ export class AuthService {
 
   register(user: User): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/register`, {
+      pseudo: user.pseudo,
       email: user.email,
       password: user.password,
     });
   }
 
-  login(user: User): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/login`, {
-      email: user.email,
-      password: user.password,
+      email,
+      password,
     });
   }
 
-  setToken(token: string): void {
+  setCookie(token: string, pseudo: string): void {
     this.cookieService.set('authToken', token);
+    this.cookieService.set('pseudo', pseudo);
   }
 
   getToken(): string {
     return this.cookieService.get('authToken');
+  }
+
+  getPseudo(): string {
+    return this.cookieService.get('pseudo');
   }
 
   isAuthenticated(): boolean {
@@ -41,5 +47,6 @@ export class AuthService {
 
   logout(): void {
     this.cookieService.delete('authToken');
+    this.cookieService.delete('pseudo');
   }
 }

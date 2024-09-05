@@ -1,5 +1,6 @@
 const express = require("express");
-const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/authRoutes");
+const playlistRoutes = require("./routes/playlistRoutes");
 const sequelize = require("./dbconfig");
 const cors = require("cors");
 
@@ -13,6 +14,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use("/auth", authRoutes);
+app.use("/playlist", playlistRoutes);
 
 app.get("/", (req, res) => {
   res.send("Angular initiation backend");

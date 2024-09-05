@@ -1,13 +1,14 @@
 <main>
   <header class="f a-cent j-betw prl2 ptb2 bg-primary">
     <a routerLink="/home">Mes playlists YT</a>
-    <nav>
-      @if(!userAuthenticated()) {
-      <a routerLink="/login">Connexion</a>
-      <a routerLink="/register" class="ml2">Inscription</a>
+    <nav class="f">
+      @if(userAuthenticated()) {
+      <a routerLink="/playlists">Mes playlists</a>
+      <p class="ml2" (click)="logout()">Déconnexion</p>
       }
       @else {
-      <p class="ml2" (click)="logout()">Deconnexion</p>
+      <a routerLink="/login">Connexion</a>
+      <a routerLink="/register" class="ml2">Inscription</a>
       }
     </nav>
   </header>

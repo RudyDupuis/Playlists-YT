@@ -1,0 +1,28 @@
+<main class="f">
+    <section class="left-panel bg-grey-3 f-col a-cent">
+        <div class="f-col a-cent mb2">
+            <p class="larger-text ptb2">{{ pseudo }}</p>
+            <button (click)="componentToShow = 'search'">Rechercher</button>
+        </div>
+        <div class="prl1">
+            <h3 class="mb1">Ma playlist</h3>
+            @for(video of videos; track $index) {
+            <div class="f a-cent j-betw mb2">
+                <img [src]="video.thumbnailUrl" alt="{{ video.title }}" />
+                <p class="ml2">{{ video.title }}</p>
+                <button class="smallBtn" (click)="removeVideoFromPlaylist(video.id)">X</button>
+            </div>
+            } @empty {
+            <p>Aucune vidéo dans votre playlist</p>
+            }
+        </div>
+    </section>
+    <section class="right-panel f-col a-cent">
+        @if(componentToShow === 'watch') {
+        <app-watch-video></app-watch-video>
+        }
+        @if(componentToShow === 'search') {
+        <app-search-videos></app-search-videos>
+        }
+    </section>
+</main>

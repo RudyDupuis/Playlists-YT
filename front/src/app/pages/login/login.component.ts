@@ -34,20 +34,17 @@ export class LoginComponent {
       return;
     }
 
-    const user = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
-    };
-
-    this.authService.login(user).subscribe({
-      next: (response) => {
-        this.authService.setToken(response.token);
-        this.router.navigate(['/home']);
-      },
-      error: (error) => {
-        this.errorMessage =
-          error.error.message || 'Erreur lors de la connexion';
-      },
-    });
+    this.authService
+      .login(this.loginForm.value.email, this.loginForm.value.password)
+      .subscribe({
+        next: (response) => {
+          this.authService.setCookie(response.token, response.pseudo);
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          this.errorMessage =
+            error.error.message || 'Erreur lors de la connexion';
+        },
+      });
   }
 }
