@@ -1,0 +1,26 @@
+<main class="f-col a-cent j-cent">
+    <h2>Connexion</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="f-col mb2">
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" required />
+            @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <p class="text-error">L'email est obligatoire.</p>
+            }
+        </div>
+
+        <div class="f-col mb2">
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" formControlName="password" required />
+            @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <p class="text-error">Le mot de passe est obligatoire.</p>
+            }
+        </div>
+
+        @if(errorMessage !== undefined) {
+        <p class="text-error mb2">{{ errorMessage }}</p>
+        }
+
+        <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+    </form>
+</main>

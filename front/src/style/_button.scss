@@ -19,4 +19,10 @@ button {
     background-color: $grey-1;
     color: $light;
   }
+
+  &:disabled {
+    background: $grey-1;
+    color: $light;
+    cursor: not-allowed;
+  }
 }

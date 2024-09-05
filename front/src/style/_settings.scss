@@ -12,3 +12,7 @@ body {
   background: $light;
   scroll-behavior: smooth;
 }
+
+main {
+  min-height: 80vh;
+}

@@ -21,3 +21,12 @@ $grey-3: #e0e0e0;
 .text-important {
   color: $primary;
 }
+
+/** Background **/
+.bg-primary {
+  background-color: $primary;
+  p,
+  a {
+    color: $light;
+  }
+}

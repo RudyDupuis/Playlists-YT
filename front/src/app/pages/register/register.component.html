@@ -1,0 +1,25 @@
+<main class="f-col a-cent j-cent">
+    <h2>Inscription</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="f-col mb2">
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" required />
+            @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <p class="text-error">L'email doit être valide.</p>
+            }
+        </div>
+
+        <div class="f-col mb2">
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" formControlName="password" required />
+            @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <p class="text-error">Le mot de passe doit contenir au moins 6
+                caractères.</p>
+            }
+        </div>
+        @if(errorMessage !== undefined) {
+        <p class="text-error mb2">{{ errorMessage }}</p>
+        }
+        <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
+    </form>
+</main>
