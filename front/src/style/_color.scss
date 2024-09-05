@@ -1,0 +1,23 @@
+$primary: #12728d;
+
+$false: #d85b3f;
+$true: #739b2d;
+
+$light: #efefef;
+$dark: #2d2d2d;
+$grey-1: #7a7a7a;
+$grey-2: #b8b8b8;
+$grey-3: #e0e0e0;
+
+/** Text **/
+.text-error {
+  color: $false;
+}
+
+.text-succes {
+  color: $true;
+}
+
+.text-important {
+  color: $primary;
+}

@@ -1,0 +1,44 @@
+$font-regular: Arial;
+
+* {
+  font-family: $font-regular;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0.1em;
+  color: $dark;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin-top: 32px;
+}
+h2 {
+  font-size: 22px;
+}
+h3 {
+  font-size: 18px;
+}
+
+.isCurrentPage {
+  cursor: default;
+  text-decoration: underline;
+
+  &:hover {
+    color: $dark;
+  }
+}
+
+.larger-text {
+  font-size: 16px;
+}
+
+.text-a-cent {
+  text-align: center;
+}

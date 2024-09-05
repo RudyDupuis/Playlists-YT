@@ -4,10 +4,15 @@ const { Sequelize } = require("sequelize");
 const app = express();
 const port = 3000;
 
-const sequelize = new Sequelize("express_dev_db", "postgres", "postgres", {
-  host: "db",
-  dialect: "postgres",
-});
+const sequelize = new Sequelize(
+  "express_dev_db",
+  "userenclair!cestpasbien",
+  "motdepasseenclair!cestpasbien",
+  {
+    host: "db",
+    dialect: "postgres",
+  }
+);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
