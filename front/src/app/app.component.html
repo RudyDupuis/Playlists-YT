@@ -2,8 +2,13 @@
   <header class="f a-cent j-betw prl2 ptb2 bg-primary">
     <a routerLink="/home">Mes playlists YT</a>
     <nav>
+      @if(!userAuthenticated()) {
       <a routerLink="/login">Connexion</a>
       <a routerLink="/register" class="ml2">Inscription</a>
+      }
+      @else {
+      <p class="ml2" (click)="logout()">Deconnexion</p>
+      }
     </nav>
   </header>
   <router-outlet></router-outlet>
