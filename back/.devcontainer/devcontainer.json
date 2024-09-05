@@ -1,0 +1,6 @@
+{
+    "name": "Angular Initiation Back",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/usr/src/app"
+}
