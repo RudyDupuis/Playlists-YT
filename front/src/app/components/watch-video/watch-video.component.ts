@@ -27,7 +27,7 @@ export class WatchVideoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['video'] && changes['video'].currentValue !== undefined) {
+    if (changes['video'].currentValue !== undefined) {
       this.updateVideoUrl();
     }
   }

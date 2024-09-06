@@ -37,21 +37,13 @@ export class SearchVideosComponent {
         this.videos = results;
       },
       error: (error) => {
-        this.errorMessage = 'Erreur lors de la recherche de vidéos';
+        this.errorMessage = 'Error loading videos';
       },
     });
   }
 
   addVideoToPlaylist(id: string, title: string, thumbnailUrl: string) {
     const video = new Video(id, title, thumbnailUrl);
-    this.playlistService.addVideos(video.id).subscribe({
-      next: () => {
-        this.playlistService.updateVideos([...this.videos, video]);
-        window.location.reload();
-      },
-      error: (error) => {
-        console.error('Error adding video to playlist:', error);
-      },
-    });
+    this.playlistService.addVideos(video).subscribe();
   }
 }

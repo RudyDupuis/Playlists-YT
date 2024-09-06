@@ -7,10 +7,11 @@
         <div class="prl1">
             <h3 class="mb1">Ma playlist</h3>
             @for(video of videos; track $index) {
-            <div class="f a-cent j-betw mb2" (click)="selectVideo(video)">
-                <img [src]="video.thumbnailUrl" alt="{{ video.title }}" />
+            <div class="f a-cent j-betw mb2">
+                <img [src]="video.thumbnailUrl" alt="{{ video.title }}" (click)="selectVideo(video)"
+                    class="cursorPointer" />
                 <p class="ml2">{{ video.title }}</p>
-                <button class="smallBtn" (click)="removeVideoFromPlaylist(video.id)">X</button>
+                <button class="smallBtn" (click)="removeVideoFromPlaylist(video)">X</button>
             </div>
             } @empty {
             <p>Aucune vidéo dans votre playlist</p>

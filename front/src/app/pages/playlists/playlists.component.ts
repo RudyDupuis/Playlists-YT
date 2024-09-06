@@ -21,35 +21,14 @@ export class PlaylistsComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private playlistService: PlaylistService,
-    private youtubeService: YoutubeService
+    private playlistService: PlaylistService
   ) {
     this.pseudo = this.authService.getPseudo();
   }
 
   ngOnInit(): void {
-    this.playlistService.getPlaylist().subscribe({
-      next: (response) => {
-        response.videos.forEach((videoId: string) => {
-          this.youtubeService.getVideoById(videoId).subscribe({
-            next: (response) => {
-              this.videos.push(
-                new Video(
-                  videoId,
-                  response.snippet.title,
-                  response.snippet.thumbnails.default.url
-                )
-              );
-            },
-            error: (error) => {
-              console.error('Error loading video:', error);
-            },
-          });
-        });
-      },
-      error: (error) => {
-        console.error('Error loading playlist:', error);
-      },
+    this.playlistService.videos$.subscribe((videos) => {
+      this.videos = videos;
     });
   }
 
@@ -58,14 +37,7 @@ export class PlaylistsComponent implements OnInit {
     this.componentToShow = 'watch';
   }
 
-  removeVideoFromPlaylist(videoId: string) {
-    this.playlistService.removeVideos(videoId).subscribe({
-      next: () => {
-        this.videos = this.videos.filter((video) => video.id !== videoId);
-      },
-      error: (error) => {
-        console.error('Error removing video from playlist:', error);
-      },
-    });
+  removeVideoFromPlaylist(video: Video) {
+    this.playlistService.removeVideos(video).subscribe();
   }
 }
