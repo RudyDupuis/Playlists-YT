@@ -14,9 +14,10 @@ import { Video } from '../../models/Video';
   styleUrls: ['./playlists.component.scss'],
 })
 export class PlaylistsComponent implements OnInit {
-  pseudo: string | undefined = undefined;
+  pseudo: string | undefined;
   componentToShow: 'watch' | 'search' = 'search';
   videos: Video[] = [];
+  selectedVideo: Video | undefined;
 
   constructor(
     private authService: AuthService,
@@ -50,6 +51,11 @@ export class PlaylistsComponent implements OnInit {
         console.error('Error loading playlist:', error);
       },
     });
+  }
+
+  selectVideo(video: Video) {
+    this.selectedVideo = video;
+    this.componentToShow = 'watch';
   }
 
   removeVideoFromPlaylist(videoId: string) {
