@@ -76,3 +76,17 @@
   width: 80vw;
   max-width: 1300px;
 }
+
+/** media queries **/
+.f-s-col {
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.f-m-col {
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+  }
+}

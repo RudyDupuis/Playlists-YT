@@ -13,6 +13,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   standalone: true,
   imports: [],
   templateUrl: './watch-video.component.html',
+  styleUrls: ['./watch-video.component.scss'],
 })
 export class WatchVideoComponent implements OnInit, OnChanges {
   @Input() video: Video | undefined;

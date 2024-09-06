@@ -34,3 +34,15 @@ button {
 .cursorPointer {
   cursor: pointer;
 }
+
+.navBtn {
+  font-size: 16px;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.logoBtn {
+  font-size: 18px;
+  font-weight: bold;
+}

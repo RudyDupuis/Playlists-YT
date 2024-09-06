@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Video } from '../models/Video';
 import { YoutubeService } from './youtube.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -60,29 +60,30 @@ export class PlaylistService {
   }
 
   addVideos(video: Video): Observable<any> {
-    const response = this.http.post(
-      `${this.apiUrl}/playlist/videos`,
-      { videoId: video.id },
-      { headers: this.getAuthHeaders() }
-    );
-
-    this.playlistSubject.next([...this.playlistSubject.value, video]);
-
-    return response;
+    return this.http
+      .post(
+        `${this.apiUrl}/playlist/videos`,
+        { videoId: video.id },
+        { headers: this.getAuthHeaders() }
+      )
+      .pipe(
+        tap(() => {
+          this.playlistSubject.next([...this.playlistSubject.value, video]);
+        })
+      );
   }
 
   removeVideos(video: Video): Observable<any> {
-    const response = this.http.delete(
-      `${this.apiUrl}/playlist/videos/${video.id}`,
-      {
+    return this.http
+      .delete(`${this.apiUrl}/playlist/videos/${video.id}`, {
         headers: this.getAuthHeaders(),
-      }
-    );
-
-    this.playlistSubject.next(
-      this.playlistSubject.value.filter((v) => v.id !== video.id)
-    );
-
-    return response;
+      })
+      .pipe(
+        tap(() => {
+          this.playlistSubject.next(
+            this.playlistSubject.value.filter((v) => v.id !== video.id)
+          );
+        })
+      );
   }
 }

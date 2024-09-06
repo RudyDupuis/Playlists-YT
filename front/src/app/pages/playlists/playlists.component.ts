@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { WatchVideoComponent } from '../../components/watch-video/watch-video.component';
 import { SearchVideosComponent } from '../../components/search-videos/search-videos.component';
 import { PlaylistService } from '../../services/playlist.service';
-import { YoutubeService } from '../../services/youtube.service';
 import { Video } from '../../models/Video';
 
 @Component({
